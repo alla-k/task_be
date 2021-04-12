@@ -15,4 +15,24 @@ It is designed to allow customers to buy assets (ISINs), save orders and update 
     - has a database to store customers accounts (balance) and orders 
 
 ![](schema.png?raw=true "Title")
- 
+
+
+**How to run:**
+1. Build docker image for multi-postgres DB by running the following command from root directory:
+
+```
+docker build . -t multi-postgres
+   ```
+
+2. Run docker-compose, which will start databases and Kafka broker necessary to run microservices:
+```
+docker-compose up -d
+   ```
+3. Build and run Dockerfile in each of microservices folder to start corresponding microservice.  
+   Suggested order of starting is price-service, order-service, customer-service
+
+```
+docker build . -t price-handler
+docker run price-handler
+   ```
+4. After services are started, you can use kafkacat or any other tool of your choice to connect to Kafka broker on port 9092 and work with messages.
