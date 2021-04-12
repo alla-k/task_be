@@ -28,11 +28,9 @@ docker build . -t multi-postgres
 ```
 docker-compose up -d
    ```
-3. Build and run Dockerfile in each of microservices folder to start corresponding microservice.  
-   Suggested order of starting is price-service, order-service, customer-service
+3. Run each service locally using gradle/gradlew from service directory
 
 ```
-docker build . -t price-handler
-docker run price-handler
+./gradlew bootRun
    ```
 4. After services are started, you can use kafkacat or any other tool of your choice to connect to Kafka broker on port 9092 and work with messages.
