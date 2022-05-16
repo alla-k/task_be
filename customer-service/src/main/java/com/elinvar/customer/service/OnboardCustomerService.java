@@ -24,7 +24,7 @@ public class OnboardCustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public void onboardCustomer(String customerId, String name, BigDecimal balance) {
+    public String onboardCustomer(String customerId, String name, BigDecimal balance) {
         customerRepository.save(Customer.builder().customerId(customerId).name(name).build());
         onboardCustomerPublisher.publish(
                 OnboardCustomerMessage.builder()
@@ -33,5 +33,6 @@ public class OnboardCustomerService {
                         .build()
         );
         log.info("Customer {} was onboarded", customerId);
+        return customerId;
     }
 }
