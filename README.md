@@ -36,3 +36,8 @@ docker build . -t price-handler
 docker run price-handler
    ```
 4. After services are started, you can use kafkacat or any other tool of your choice to connect to Kafka broker on port 9092 and work with messages.
+5. There are REST API endpoints available to create new customer and send orders (see customer-service). Examples of usage:
+```
+/addCustomer?name=testUser4&balance=20000
+/addOrder?customerId=274c959c-fbab-4e0c-a8ab-14e7caadf62a&isin=DE000122&quantity=25
+   ```
